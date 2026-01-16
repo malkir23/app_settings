@@ -1,0 +1,158 @@
+# Вкажіть директорії або файли для перевірки.
+# Якщо не вказано, Ruff перевірить поточну директорію та її піддиректорії.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+    "src/migrations",
+]
+line-length = 110 # Максимальна довжина рядка (за замовчуванням 88).
+# target-version = "py310" # Цільова версія Python.
+
+# Конфігурація лінтера
+[lint]
+# Увімкніть широкий набір правил для максимальної перевірки.
+# Це включає правила з наступних наборів:
+# E - Pycodestyle помилки
+# F - Pyflakes помилки
+# W - Pycodestyle попередження
+# I - isort (сортування імпортів)
+# N - Назви (pep8-naming)
+# D - Docstrings (pydocstyle) - можна налаштувати окремо нижче
+# UP - Модернізація коду (pyupgrade)
+# A - Вбудовані функції, які не слід використовувати (flake8-builtins)
+# B - Помилки блокування (flake8-bugbear)
+# C - Складність (flake8-comprehensions, flake8-simplify)
+# G - Безпека (flake8-bandit) - базові правила
+# PT - Pytest стилі (flake8-pytest-style)
+# RSE - Винятки (flake8-raise)
+# RET - Повернення значень (flake8-return)
+# SIM - Спрощення коду (flake8-simplify)
+# TID - Типові помилки імпорту (flake8-tidy-imports)
+# ARG - Невикористовувані аргументи (flake8-unused-arguments)
+# PLE, PLC, PLW - Pylint помилки, конвенції, попередження (підмножина правил Pylint)
+# S - Безпека (flake8-bandit) - більш повний набір, може бути шумним
+# T - Print statements (flake8-print)
+# PPY - Python 3.10+ (flake8-future-annotations)
+# PIE - Небажані імпорти (flake8-pie)
+# Q - Рядки в лапках (flake8-quotes)
+# TCH - Перевірка типів (flake8-type-checking)
+# SLF - Приватні члени (flake8-self)
+# ERA - Закоментований код (flake8-eradicate)
+# EXE - Виконувані файли (flake8-executable)
+# DJ - Django (flake8-django)
+# NPY - Numpy (flake8-numpy)
+# PD - Pandas (flake8-pandas)
+
+# Увімкніть всі правила з цих наборів
+select = [
+    "E", "F", "W", "I", "N", "D", "UP", "A", "B", "C", "G", "PT",
+    "RSE", "RET", "SIM", "TID", "ARG", "PLE", "PLC", "PLW",
+    "S", "T", "PIE", "Q", "TCH", "SLF", "ERA", "EXE", "ANN"
+    # "PPY",
+    # "DJ", # Увімкніть цей рядок, якщо це Django проєкт.
+    # "NPY", # Увімкніть цей рядок, якщо використовуєте Numpy.
+    # "PD",  # Увімкніть цей рядок, якщо використовуєте Pandas.
+]
+
+# Ви можете виключити певні правила, які вважаєте занадто суворими або неактуальними для вашого проєкту.
+# Додано D213 до списку ігнорування, оскільки воно конфліктує з D212.
+ignore = [
+    "D100", # Відсутній docstring для публічного модуля
+    "D101",
+    "D102",
+    "D103",
+    "D104", # Відсутній docstring для публічного пакету
+    "D105", # Відсутній docstring для публічного класу
+    "D107", # Відсутній docstring для __init__
+    "S101", # assert
+    "C901", # Занадто висока циклічна складність функції
+    "D203", # Один порожній рядок перед docstring класу (конфліктує з D211)
+    "D213", # Багаторядковий docstring: короткий опис має починатися з другого рядка (конфліктує з D212)
+    "E712",
+    "G004",
+]
+
+# --- Конфігурація для правил, які можна виправляти (fix) ---
+# Явно вказуємо, які правила можна виправляти.
+# Щоб виправляти тільки імпорти ("I"), вказуємо лише їх.
+fixable = ["I"]
+
+# Явно вказуємо правила, які не можна виправляти.
+# Якщо fixable = ["I"], то всі інші правила вже не є fixable,
+# тому unfixable можна залишити порожнім, якщо немає специфічних винятків
+# всередині набору "I", які ви хочете заборонити виправляти.
+unfixable = []
+
+[lint.extend-per-file-ignores]
+"tests/**/*.py" = [
+    # at least this three should be fine in tests:
+    "S101", # asserts allowed in tests...
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant...
+    "FBT", # Don't care about booleans as positional arguments in tests, e.g. via @pytest.mark.parametrize()
+    # The below are debateable
+    "PLR2004", # Magic value used in comparison, ...
+    "S311", # Standard pseudo-random generators are not suitable for cryptographic purposes
+    "PT011",
+]
+
+# --- Додаткові опціональні конфігурації для конкретних наборів правил ---
+
+# Конфігурація для docstrings (D)
+# [lint.pydocstyle] # Змінено з [ruff.lint.pydocstyle] на [lint.pydocstyle]
+# Вкажіть стиль docstring, який ви використовуєте (наприклад, "google", "numpy", "sphinx").
+# convention = "google"
+# Або налаштуйте конкретні правила docstring, які потрібно ігнорувати/включити.
+# ignore = ["D203", "D212"] # Приклади ігнорування правил docstring (наприклад, D203: 1 порожній рядок перед docstring)
+# Якщо ви хочете використовувати стиль, де короткий опис починається з другого рядка (D213),
+# вам потрібно ігнорувати D212 замість D213 і, можливо, вказати convention.
+# Наприклад, для стилю NumPy:
+# convention = "numpy"
+# ignore = ["D212"] # Ігноруємо D212, щоб використовувати D213, який включений в конвенцію numpy
+
+# Конфігурація для імен (N)
+# [lint.pep8-naming] # Змінено з [ruff.lint.pep8-naming] на [lint.pep8-naming]
+# ignore-names = ["setUp", "tearDown"] # Ігнорувати правила іменування для певних імен (наприклад, у тестах)
+# class-attribute-rgx = "([A-Z][a-zA-Z0-9]*_)+" # Регулярний вираз для атрибутів класу (наприклад, для констант)
+
+# Конфігурація для isort (I)
+# [lint.isort]
+# force-single-line = true # Примусове розташування всіх імпортів на одному рядку.
+# known-first-party = ["your_package_name"] # Вкажіть назву вашого основного пакету/додатку.
+# section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"] # Порядок секцій імпортів.
+# combine-as-imports = true # Комбінувати імпорти 'import x as y' та 'import x'.
+
+# Конфігурація для рядків в лапках (Q)
+# [lint.quotes] # Змінено з [ruff.lint.quotes] на [lint.quotes]
+# Вкажіть стиль лапок: "double" (подвійні) або "single" (одинарні)
+# main-quote-style = "double"
+# # Вкажіть стиль лапок для docstrings: "double" або "single"
+# docstring-quote-style = "double"
+# # Вкажіть стиль лапок для f-рядків: "double" або "single"
+# inline-quotes = "double"
+
+# Налаштування форматера (окремо від лінтера).
+# Ці налаштування впливають на команду `ruff format`.
+[format]
+quote-style = "single" # Використовувати подвійні лапки для рядків.
+# indent-style = "space" # Використовувати пробіли для відступів.
+# skip-magic-trailing-comma = false # Не пропускати кінцеву кому в магічних елементах.
+# line-ending = "auto" # Автоматичне визначення закінчення рядка.
+[lint.flake8-quotes]
+inline-quotes = "single"

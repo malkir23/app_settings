@@ -1,0 +1,30 @@
+{
+  "ide": {
+    "enabled": true,
+    "hasSeenNudge": true
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "general": {
+    "previewFeatures": true
+  },
+  "mcpServers": {
+    "Context7": {
+      "httpUrl": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "ctx7sk-3e2b2451-2064-4cf1-8901-980d8ed66fd7",
+        "Accept": "application/json, text/event-stream"
+      }
+    },
+    "supabase": {
+      "httpUrl": "https://mcp.supabase.com/mcp?project_ref=ywxpbyfutjxwymtvhbks"
+    },
+    "vibe-check-mcp": {
+      "command": "npx",
+      "args": ["-y", "@pv-bhat/vibe-check-mcp", "start", "--stdio"]
+    }
+  }
+}

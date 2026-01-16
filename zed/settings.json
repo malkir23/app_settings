@@ -1,0 +1,163 @@
+{
+  "agent": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-5-mini"
+    },
+    "model_parameters": []
+  },
+  "icon_theme": "Material Icon Theme",
+  "base_keymap": "VSCode",
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "preferred_line_length": 79,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark Pro"
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["ruff", "pylsp", "!pyright"],
+      "format_on_save": "on",
+      "tab_size": 4,
+      "code_actions_on_format": {
+        "source.organizeImports": true
+      }
+    },
+    "XML": {
+      "formatter": {
+        "external": {
+          "command": "prettier",
+          "arguments": [
+            "--parser",
+            "xml",
+            "--plugin=/Users/patrick/Library/Application Support/npm/lib/node_modules/@prettier/plugin-xml/src/plugin.js",
+            "--stdin-filepath",
+            "{buffer_path}"
+          ]
+        }
+      }
+    }
+  },
+  "lsp": {
+    "pylsp": {
+      "settings": {
+        "plugins": {
+          // disable plugins superseded by ruff
+          "autopep8": { "enabled": false },
+          "black": { "enabled": false },
+          "flake8": { "enabled": false },
+          "isort": { "enabled": false },
+          "mccabe": { "enabled": false },
+          "pycodestyle": { "enabled": false },
+          "pydocstyle": { "enabled": false },
+          "pyflakes": { "enabled": false },
+          "pylint": { "enabled": false },
+          "yapf": { "enabled": false },
+
+          // keep the others
+          "pylsp_mypy": { "enabled": true },
+          "jedi": { "enabled": true },
+          "rope": { "enabled": true },
+          "rope_autoimport": { "enabled": true },
+          "rope_completion": { "enabled": true },
+
+          // disable pylsp ruff in favor of `ruff server`
+          "ruff": { "enabled": false }
+        }
+      }
+    }
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/node_modules",
+    "**/target",
+    "**/dist",
+    "**/build",
+    "**/.venv",
+    "**/__pycache__",
+    "extensions"
+  ]
+}
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+// {
+//     "icon_theme": "Material Icon Theme",
+//     "base_keymap": "VSCode",
+//     "ui_font_size": 16,
+//     "buffer_font_size": 15,
+//     "preferred_line_length": 79,
+//     "tab_size": 4,
+//     "theme": {
+//         "mode": "system",
+//         "light": "One Dark Flat",
+//         "dark": "One Dark Pro"
+//     },
+//     "languages": {
+//         "Python": {
+//             "language_servers": ["pylsp", "ruff", "!pyright", "..."],
+//             "format_on_save": "off",
+//             "formatter": [
+//                 {
+//                     "code_action": "source.organizeImports.ruff"
+//                 },
+//                 {
+//                     "code_action": "source.fixAll.ruff"
+//                 },
+//                 {
+//                     "language_server": {
+//                         "name": "ruff"
+//                     }
+//                 }
+//             ]
+//         }
+//     },
+//     "lsp": {
+//         "pylsp": {
+//             "settings": {
+//                 "plugins": {
+//                     // disable plugins superseded by ruff
+//                     "autopep8": { "enabled": false },
+//                     "black": { "enabled": false },
+//                     "flake8": { "enabled": false },
+//                     "isort": { "enabled": false },
+//                     "mccabe": { "enabled": false },
+//                     "pycodestyle": { "enabled": false },
+//                     "pydocstyle": { "enabled": false },
+//                     "pyflakes": { "enabled": false },
+//                     "pylint": { "enabled": false },
+//                     "yapf": { "enabled": false },
+
+//                     // keep the others
+//                     "pylsp_mypy": { "enabled": true },
+//                     "jedi": { "enabled": true },
+//                     "rope": { "enabled": true },
+//                     "rope_autoimport": { "enabled": true },
+//                     "rope_completion": { "enabled": true },
+
+//                     // disable pylsp ruff in favor of `ruff server`
+//                     "ruff": { "enabled": false }
+//                 }
+//             }
+//         },
+//         "ruff": {
+//             "initialization_options": {
+//                 "settings": {
+//                     "config": "/home/malkir/Документи/Work/opticorp/harvester-core/ruff.toml"
+//                 }
+//             }
+//         }
+//     }
+// }
