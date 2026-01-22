@@ -9,7 +9,10 @@
     }
   },
   "general": {
-    "previewFeatures": true
+    "previewFeatures": true,
+    "checkpointing": {
+      "enabled": true
+    }
   },
   "mcpServers": {
     "Context7": {
